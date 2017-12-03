@@ -1,5 +1,10 @@
 # Pick and Place
 
+## Goal
+
+The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. Check IK_Server to find more details about Inverse Kinematics.
+
+## Setup
 Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
 
 ### One time Gazebo setup step:
