@@ -1,5 +1,4 @@
-[![Udacity - Robotics NanoDegree Program](https://s3-us-west-1.amazonaws.com/udacity-robotics/Extra+Images/RoboND_flag.png)](https://www.udacity.com/robotics)
-# Robotic arm - Pick & Place project
+##Pick and Place
 
 Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
 
@@ -59,9 +58,8 @@ export GAZEBO_MODEL_PATH=~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/mode
 source ~/catkin_ws/devel/setup.bash
 ```
 
-For demo mode make sure the **demo** flag is set to _"true"_ in `inverse_kinematics.launch` file under /RoboND-Kinematics-Project/kuka_arm/launch
 
-In addition, you can also control the spawn location of the target object in the shelf. To do this, modify the **spawn_location** argument in `target_description.launch` file under /RoboND-Kinematics-Project/kuka_arm/launch. 0-9 are valid values for spawn_location with 0 being random mode.
+In addition, you can also control the spawn location of the target object in the shelf. To do this, modify the**spawn_location** argument in `target_description.launch` file under /RoboND-Kinematics-Project/kuka_arm/launch. 0-9 are valid values for spawn_location with 0 being random mode.
 
 You can launch the project by
 ```sh
@@ -83,19 +81,4 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 	- Blue cylindrical target in one of the shelves
 	
 	- Dropbox right next to the robot
-	
-
-If any of these items are missing, report as an issue.
-
-Once all these items are confirmed, open rviz window, hit Next button.
-
-To view the complete demo keep hitting Next after previous action is completed successfully. 
-
-Since debugging is enabled, you should be able to see diagnostic output on various terminals that have popped up.
-
-The demo ends when the robot arm reaches at the top of the drop location. 
-
-There is no loopback implemented yet, so you need to close all the terminal windows in order to restart.
-
-In case the demo fails, close all three terminal windows and rerun the script.
 
