@@ -1,4 +1,4 @@
-##Pick and Place
+# Pick and Place
 
 Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
 
