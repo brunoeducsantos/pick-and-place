@@ -7,13 +7,12 @@
 [image3]: ./misc_images/misc2.png
   
 
-You're reading it!
 
 ### Kinematic Analysis
 #### 1. Evaluation kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
 
 Joint Name | Parent Link |Child Link | x(m) | y(m) | z(m) | roll | pitch | yaw
---- | --- | --- | --- | ---| ---|---|---|---|---|---|---|---|
+--- | --- | --- | --- | ---| ---|---|---|---|---
 Joint_base_link | link_1 |  |  | 0.33 |0 |0 |0 
 Joint_2 | link_1 | link_2 | 0.35 | 0 |  0.42 |0 |0 |0 
 Joint_3| link_2 | link_3| 0 | 0| 1.25|0 |0 |0 
