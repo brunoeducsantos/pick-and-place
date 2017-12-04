@@ -36,13 +36,13 @@ def handle_calculate_IK(req):
 	 
 	# Create Modified DH parameters
 	#
-	s= {alpha0: 0 ,a0: 0 , d1 : 0.75,
+	s= {alpha0: 0 ,a0: 0 , d1 : 0.75,q1 : q1,
 	    alpha1: -pi/2 , a1:0.35 , d2: 0 ,q2:q2-pi/2,
-	    alpha2: 0  , a2:1.25, d3:0 ,
-	    alpha3: -pi/2  , a3: -0.054,  d4: 1.50 ,
-	    alpha4: pi/2 , a4: 0, d5: 0,
-	    alpha5:  -pi/2 , a5: 0 ,d6: 0 ,
-	    alpha6:  pi/2, a6:0, d7:0.303,q7:0 }	
+	    alpha2: 0  , a2:1.25, d3:0 ,q3:q3,
+	    alpha3: -pi/2  , a3: -0.054,  d4: 1.50 ,q4: q4,
+	    alpha4: pi/2 , a4: 0, d5: 0,q5: q5,
+	    alpha5:  -pi/2 , a5: 0 ,d6: 0 ,q6: q6,
+	    alpha6:  0, a6:0, d7:0.303,q7:0 }	
 	# Define Modified DH Transformation matrix
 	T_0_1 = Matrix([[             cos(q1),            -sin(q1),            0,              a0],
                [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
@@ -121,7 +121,7 @@ def handle_calculate_IK(req):
               [       0,        cos(phi1),        -sin(phi1),0],
               [0,        sin(phi1),  cos(phi1),1],
               [0,0,0,1]]) 
-        R_rpy = simplify(R_zz*R_yy*R_zz*R_corr)
+        R_rpy = simplify(R_zz*R_yy*R_xx*R_corr.T)
         R_0_3 = simplify(T_0_1[0:3,0:3]*T_1_2[0:3,0:3]*T_2_3[0:3,0:3])
           # Initialize service response
         joint_trajectory_list = []
@@ -170,9 +170,9 @@ def handle_calculate_IK(req):
             R_0_33 = R_0_3.evalf(subs={'q1': theta1, 'q2': theta2, 'q3': theta3}, chop = True)
             # Compute R_3_6
             R_3_6 = simplify(R_0_33.T*R_rpy[0:3,0:3])
-	    theta4 = atan2(-R_3_6[2,2], R_3_6[0,2])
+	    theta4 = atan2(R_3_6[2,2], -R_3_6[0,2])
             theta5 = atan2( sqrt(pow(R_3_6[2,2],2) + pow(R_3_6[0,2],2)) , R_3_6[1,2])
-            theta6 =  atan2(R_3_6[1,1], -R_3_6[1,0])
+            theta6 =  atan2(-R_3_6[1,1], R_3_6[1,0])
 
 	    	    # Populate response for the IK request
             # In the next line replace theta1,theta2...,theta6 by your joint angle variables

@@ -26,45 +26,40 @@ test_cases = {1:[[[2.16135,-1.42635,1.55109],
               5:[]}
 
 ang1,ang2 = symbols('ang1:3')
-R_z = Matrix([[             cos(ang1),            -sin(ang1),            0,              0],
-               [ sin(ang1), cos(ang1), 0, 0],
-               [ 0, 0,  1,  0],
-               [                   0,                   0,            0,               1]])
+R_z = Matrix([[             cos(ang1),            -sin(ang1),            0],
+               [ sin(ang1), cos(ang1), 0],
+               [ 0, 0,  1]])
 
-R_y = Matrix([[             cos(ang2),            sin(ang2),            0,              0],
-               [ 0, 1, 0, 0],
-               [  -sin(ang2),0,  cos(ang2),  0],
-               [                   0,                   0,            0,               1]])
+R_y = Matrix([[             cos(ang2),            sin(ang2),  0],
+               [ 0, 1, 0],
+               [  -sin(ang2),0,  cos(ang2)]])
 
 R_corr = simplify(R_z*R_y)
 phi1,phi2,phi3 = symbols('phi1:4')
-R_zz = Matrix([[             cos(phi3),            -sin(phi3),            0,              0],
-               [ sin(phi3), cos(phi3), 0, 0],
-               [ 0, 0,  1,  0],
-               [                   0,                   0,            0,               1]])
+R_zz = Matrix([[             cos(phi3),            -sin(phi3),            0],
+               [ sin(phi3), cos(phi3), 0],
+               [ 0, 0,  1]])
 
-R_yy = Matrix([[             cos(phi2),            sin(phi2),            0,              0],
-               [ 0, 1, 0, 0],
-               [  -sin(phi2),0,  cos(phi2),  0],
-               [                   0,                   0,            0,               1]])
-R_xx=  Matrix([[ 1.,     0.,  0.,0],
-              [       0,        cos(phi1),        -sin(phi1),0],
-              [0,        sin(phi1),  cos(phi1),1],
-              [0,0,0,1]]) 
-R_rpy = simplify(R_zz*R_yy*R_zz*R_corr)
+R_yy = Matrix([[             cos(phi2),            sin(phi2),            0],
+               [ 0, 1, 0],
+               [  -sin(phi2),0,  cos(phi2)]])
+R_xx=  Matrix([[ 1.,     0.,  0],
+              [       0,        cos(phi1),        -sin(phi1)],
+              [0,        sin(phi1),  cos(phi1)]]) 
+
 
 R_corr = R_corr.evalf(subs={ang1: radians(180), ang2: radians(-90) }, chop = True)
 q1,q2,q3,q4,q5,q6,q7,q8 = symbols('q1:9')
 a0,a1,a2,a3,a4,a5,a6 = symbols('a0:7')
 d1,d2,d3,d4,d5,d6,d7,d8 = symbols('d1:9')
 alpha0,alpha1, alpha2, alpha3, alpha4, alpha5, alpha6  = symbols('alpha0:7') 
-s= {alpha0: 0 ,a0: 0 , d1 : 0.75,
+s= {        alpha0: 0 ,a0: 0 , d1 : 0.75, q1:q1, 
             alpha1: -pi/2 , a1:0.35 , d2: 0 ,q2:q2-pi/2,
-            alpha2: 0  , a2:1.25, d3:0 ,
-            alpha3: -pi/2  , a3: -0.054,  d4: 1.50 ,
-            alpha4: pi/2 , a4: 0, d5: 0,
-            alpha5:  -pi/2 , a5: 0 ,d6: 0 ,
-            alpha6:  pi/2, a6:0, d7:0.303,q7:0 } 
+            alpha2: 0  , a2:1.25, d3:0 ,q3: q3,
+            alpha3: -pi/2  , a3: -0.054,  d4: 1.50 ,q4: q4,
+            alpha4: pi/2 , a4: 0, d5: 0,q5: q5,
+            alpha5:  -pi/2 , a5: 0 ,d6: 0 ,q6: q6,
+            alpha6:  0, a6:0, d7:0.303,q7:0 } 
 
 T_0_1 = Matrix([[             cos(q1),            -sin(q1),            0,              a0],
                [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
@@ -125,7 +120,7 @@ def test_code(test_case):
     ## Set up code
     ## Do not modify!
     x = 0
-    R_rpy = simplify(R_zz*R_yy*R_zz*R_corr)
+    R_rotpy = simplify(R_zz*R_yy*R_xx*R_corr.T)
 
    # UnboundLocalError: local variable 'R_rpy' referenced before assignment
 
@@ -173,7 +168,7 @@ def test_code(test_case):
     
     #pR_rpy = simplify(R_zz*R_yy*R_zz*R_corr)
     
-    R_rpy= R_rpy.evalf(subs={'phi1': roll,'phi2': pitch,'phi3': yaw})
+    R_rpy= R_rotpy.evalf(subs={'phi1': roll,'phi2': pitch,'phi3': yaw})
    
     #print(req.poses[0].orientation.x)
     ## Insert IK code here!
@@ -191,18 +186,18 @@ def test_code(test_case):
     b = acos(((C*C) + (A*A) - (B*B))/(2*C*A))
     x = atan2(0.054, 1.5)
     theta2 = pi/2 -a -ang
-    theta3 = pi/2 -(b+x)
+    theta3 = pi/2 -(b+0.036)
     theta1 = atan2(w_y,w_x)
     #R_0_3 = simplify(T_0_1[0:3,0:3]*T_1_2[0:3,0:3]*T_2_3[0:3,0:3])
     #print("thtea2",theta2)
     R_0_33 = R_0_3.evalf(subs={'q1': theta1, 'q2': theta2, 'q3': theta3}, chop = True)
             # Compute R_3_6
     #print(R_0_3)
-    R_3_6 = simplify(R_0_33.inv("LU")*R_rpy[0:3,0:3])
+    R_3_6 = simplify(R_0_33.T*R_rpy[0:3,0:3])
   
-    theta4 = atan2(-R_3_6[2,2], R_3_6[0,2])
+    theta4 = atan2(R_3_6[2,2],-R_3_6[0,2])
     theta5 = atan2( sqrt(pow(R_3_6[2,2],2) + pow(R_3_6[0,2],2)) , R_3_6[1,2])
-    theta6 =  atan2(R_3_6[1,1], -R_3_6[1,0])
+    theta6 =  atan2(-R_3_6[1,1], R_3_6[1,0])
 
 
     ## 
@@ -273,6 +268,6 @@ def test_code(test_case):
 
 if __name__ == "__main__":
     # Change test case number for different scenarios
-    test_case_number = 3
+    test_case_number = 1
 
     test_code(test_cases[test_case_number])
