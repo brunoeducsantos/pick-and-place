@@ -86,10 +86,10 @@ def handle_calculate_IK(req):
 	# Create individual transformation matrices
 	T_0_2 = simplify(T_0_1*T_1_2)
 	T_0_3 = simplify(T_0_2*T_2_3)
-	T_0_4 = simplify(T_0_2*T_3_4)
-	T_0_5 = simplify(T_0_3*T_4_5)
-	T_0_6 = simplify(T_0_4*T_5_6)
-	T_0_7 = simplify(T_0_5*T_6_G)
+	T_0_4 = simplify(T_0_3*T_3_4)
+	T_0_5 = simplify(T_0_4*T_4_5)
+	T_0_6 = simplify(T_0_5*T_5_6)
+	T_0_7 = simplify(T_0_6*T_6_G)
 
 	
 	# Extract rotation matrices from the transformation matrices
