@@ -36,13 +36,62 @@ Links | alpha(i-1) | a(i-1) | d(i-1) | theta(i)
 
 
 #### 2. Derivation of individual transformation matrices about each joint using DH parameters
-$T_0_1$= Matrix([[             cos(q1),            -sin(q1),            0,              a0],
-               [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
-               [ sin(q1)*sin(alpha0), cos(q1)*sin(alpha0),  cos(alpha0),  cos(alpha0)*d1],
-[ 0, 0, 0, 1]])
+
+The general expression to each joint transformation matrix is:
+```
+T = [[        cos(θ),       -sin(θ),       0,         a],
+      [ sin(θ)*cos(α), cos(θ)*cos(α), -sin(α), -sin(α)*d],
+      [ sin(θ)*sin(α), cos(θ)*sin(α),  cos(α),  cos(α)*d],
+      [             0,             0,       0,         1]]
+```
+
+Using the transformation matrix formula above, here are the joint transformation matrices for the arm:
+
+```
+Joint 1: [[ cos(θ1), -sin(θ1),  0,     0],
+          [ sin(θ1),  cos(θ1),  0,     0],
+          [       0,        0,  1,  0.75],
+          [       0,        0,  0,     1]]
+```
+
+```
+Joint 2: [[ sin(θ2),  cos(θ2),  0,  0.35],
+          [       0,        0,  1,     0],
+          [ cos(θ2), -sin(θ2),  0,     0],
+          [       0,        0,  0,     1]]
+```
+
+```
+Joint 3: [[ cos(θ3), -sin(θ3),  0,  1.25],
+          [ sin(θ3),  cos(θ3),  0,     0],
+          [       0,        0,  1,     0],
+          [       0,        0,  0,     1]]
+```
+
+```
+Joint 4: [[ cos(θ4), -sin(θ4),  0, -0.054],
+          [       0,        0,  1,    1.5],
+          [-sin(θ4), -cos(θ4),  0,      0],
+          [       0,        0,  0,      1]]
+```
+
+```
+Joint 5: [[ cos(θ5), -sin(θ5),  0,      0],
+          [       0,        0, -1,      0],
+          [ sin(θ5),  cos(θ5),  0,      0],
+          [       0,        0,  0,      1]]
+```
+
+```
+Joint 6: [[ cos(θ6), -sin(θ6),  0,      0],
+          [       0,        0,  1,      0],
+          [-sin(θ6), -cos(θ6),  0,      0],
+          [       0,        0,  0,      1]]
+```
  
 
 #### 3 Generation of generalized homogeneous transforme between base_link and gripper_link using only end-effector
+
 
  
 
