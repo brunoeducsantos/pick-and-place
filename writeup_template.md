@@ -35,12 +35,17 @@ Links | alpha(i-1) | a(i-1) | d(i-1) | theta(i)
 6->EE | pi/2 | 0 | 0.303 | 0
 
 
-#### 2. Using the DH parameter table derived earlier, create individual transformation matrices about each joint. In addition, also generate a generalized homogeneous transform between base_link and gripper_link using only end-effector(gripper) pose.
+#### 2. Derivation of individual transformation matrices about each joint using DH parameters
+T_0_1 = Matrix([[             cos(q1),            -sin(q1),            0,              a0],
+               [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
+               [ sin(q1)*sin(alpha0), cos(q1)*sin(alpha0),  cos(alpha0),  cos(alpha0)*d1],
+[ 0, 0, 0, 1]])
+
+### 3 Generation of generalized homogeneous transforme between base_link and gripper_link using only end-effector
 
  
 
-
-#### 3. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
+#### 4. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
 
 And here's where you can draw out and show your math for the derivation of your theta angles. 
 
