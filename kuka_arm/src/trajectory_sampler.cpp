@@ -103,7 +103,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
   ROS_INFO("Added object list to the world");
 
   // Allow MoveGroup to add the collision objects in the world
-  ros::Duration(2.0).sleep();
+  ros::Duration(5.0).sleep();
 
   while (ros::ok())
   {
