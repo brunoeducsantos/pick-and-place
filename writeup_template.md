@@ -36,14 +36,11 @@ Links | alpha(i-1) | a(i-1) | d(i-1) | theta(i)
 
 
 #### 2. Derivation of individual transformation matrices about each joint using DH parameters
-T_0_1 = Matrix([[             cos(q1),            -sin(q1),            0,              a0],
+$T_0_1$= Matrix([[             cos(q1),            -sin(q1),            0,              a0],
                [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
                [ sin(q1)*sin(alpha0), cos(q1)*sin(alpha0),  cos(alpha0),  cos(alpha0)*d1],
 [ 0, 0, 0, 1]])
-\\begin{array}{cc}
-  a & b \\\\
-  c & c
-\\end{array}
+ 
 
 #### 3 Generation of generalized homogeneous transforme between base_link and gripper_link using only end-effector
 
