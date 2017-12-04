@@ -13,8 +13,8 @@
 
 Joint Name | Parent Link |Child Link | x(m) | y(m) | z(m) | roll | pitch | yaw
 --- | --- | --- | --- | ---| ---|---|---|---|---
-Joint_base_link | link_1 |  |  | 0.33 |0 |0 |0 
-Joint_2 | link_1 | link_2 | 0.35 | 0 |  0.42 |0 |0 |0 
+Joint_1| base_link |link_1  | 0 |0 |0.33|0|0|0  
+Joint_2         | link_1 | link_2 | 0.35 | 0 |  0.42 |0 |0 |0 
 Joint_3| link_2 | link_3| 0 | 0| 1.25|0 |0 |0 
 Joint_4|  link_3 | link_4 |0.96| 0 | -0.054|0 |0 |0 
 Joint_5| link_4 | link_5 | 0.54 |0 | 0 |0 |0 |0 
