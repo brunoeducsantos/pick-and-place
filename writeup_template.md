@@ -40,7 +40,10 @@ T_0_1 = Matrix([[             cos(q1),            -sin(q1),            0,       
                [ sin(q1)*cos(alpha0), cos(q1)*cos(alpha0), -sin(alpha0), -sin(alpha0)*d1],
                [ sin(q1)*sin(alpha0), cos(q1)*sin(alpha0),  cos(alpha0),  cos(alpha0)*d1],
 [ 0, 0, 0, 1]])
-$$ \left[\begin{matrix} 00 & 01 & 02 \\ 10 & 11 & 12 \\ 20 & 21 & 22 \end{matrix}\right] $$
+\\begin{array}{cc}
+  a & b \\\\
+  c & c
+\\end{array}
 
 #### 3 Generation of generalized homogeneous transforme between base_link and gripper_link using only end-effector
 
