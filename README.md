@@ -2,7 +2,7 @@
 
 ## Goal
 
-The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. Check IK_Server to find more details about Inverse Kinematics.
+The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. Check [IK_server](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/kuka_arm/scripts/IK_server.py) to find more details about Inverse Kinematics.
 
 ## Setup
 Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
@@ -90,4 +90,3 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 ## Implementation 
 
 For further details on Kinematics implementation and performance of algorithm check out : [writeup](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/writeup_template.md)
-
