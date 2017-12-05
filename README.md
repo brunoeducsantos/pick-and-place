@@ -87,3 +87,7 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 	
 	- Dropbox right next to the robot
 
+## Implementation 
+
+For further details on Kinematics implementation and performance of algorithm check out : [writeup](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/writeup_template.md)
+
