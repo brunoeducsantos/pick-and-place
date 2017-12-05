@@ -93,13 +93,12 @@ Joint 6: [[ cos(θ6), -sin(θ6),  0,      0],
 #### 3 Generalized homogeneous transform between base_link and gripper_link using only end-effector
 The transformation matrix between base_link and end-effector is: 
 ```
-[[1.0*(sin(phi2)*cos(phi3) - sin(phi3))*cos(phi1), 1.0*(-sin(phi2)*cos(phi3) + sin(phi3))*cos(phi1),- sin(phi3))*sin(phi1) + 1.0*cos(phi2)*cos(phi3)],
+R_rpy = [[1.0*(sin(phi2)*cos(phi3) - sin(phi3))*cos(phi1), 1.0*(-sin(phi2)*cos(phi3) + sin(phi3))*cos(phi1),- sin(phi3))*sin(phi1) + 1.0*cos(phi2)*cos(phi3)],
 [1.0*(sin(phi2)*sin(phi3) + cos(phi3))*cos(phi1), -1.0*(sin(phi2)*sin(phi3) + cos(phi3))*cos(phi1), cos(phi3))*sin(phi1) + 1.0*sin(phi3)*cos(phi2)],
 [1.0*sin(phi1)*cos(phi2),-1.0*sin(phi1)*cos(phi2),-1.0*sin(phi2)]]
 
 ```
-
- 
+where phi1 , phi2 and phi3 are respectively roll, pitch and yaw on base_link reference frame. 
 
 #### 4. Decouple Inverse Kinematics problem into Inverse Position Kinematics and inverse Orientation Kinematics; doing so derive the equations to calculate all individual joint angles.
 
