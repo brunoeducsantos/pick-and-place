@@ -26,7 +26,7 @@ def handle_calculate_IK(req):
         return -1
     else:
 		
-        ### Your FK code here
+        ### Forward Kinematics
         # Create symbols
 	#
 	q1,q2,q3,q4,q5,q6,q7,q8 = symbols('q1:9')
@@ -93,6 +93,7 @@ def handle_calculate_IK(req):
 
 	
 	# Extract rotation matrices from the transformation matrices
+	#Correction matrix
 	ang1,ang2 = symbols('ang1:3')
 	R_z = Matrix([[             cos(ang1),            -sin(ang1),            0,              0],
                [ sin(ang1), cos(ang1), 0, 0],
@@ -106,6 +107,8 @@ def handle_calculate_IK(req):
 	   
 	R_corr = simplify(R_z*R_y)
         R_corr = R_corr.evalf(subs={'ang1': radians(180),' ang2': radians(-90) }, chop = True)
+	
+	#Rotation matrix brom base_link to end-effector
 	phi1,phi2,phi3 = symbols('phi1:4')
 
         R_zz = Matrix([[             cos(phi3),            -sin(phi3),            0,              0],
@@ -122,6 +125,8 @@ def handle_calculate_IK(req):
               [0,        sin(phi1),  cos(phi1),1],
               [0,0,0,1]]) 
         R_rpy = simplify(R_zz*R_yy*R_xx*R_corr.T)
+	
+	#Orientation matrix transforming from base_link to WC
         R_0_3 = simplify(T_0_1[0:3,0:3]*T_1_2[0:3,0:3]*T_2_3[0:3,0:3])
           # Initialize service response
         joint_trajectory_list = []
@@ -140,10 +145,9 @@ def handle_calculate_IK(req):
                 [req.poses[x].orientation.x, req.poses[x].orientation.y,
                     req.poses[x].orientation.z, req.poses[x].orientation.w])
      
-            ### Your IK code here 
+            ### Inverse Kinematics
 	    # Compensate for rotation discrepancy between DH parameters and Gazebo
  
-	   
 	    R_rpy= R_rpy.evalf(subs={'phi1': roll, 'phi2': pitch, 'phi3': yaw }, chop = True)
 	    
             # Calulcate WC coordinates
@@ -164,12 +168,14 @@ def handle_calculate_IK(req):
 	    theta3 = pi/2 -(b+x)
 	    theta1 = atan2(w_y,w_x)
 		    
-            ###Compute R0_3
-	    
+            ###Evaluate R_0_3
 	   	      
             R_0_33 = R_0_3.evalf(subs={'q1': theta1, 'q2': theta2, 'q3': theta3}, chop = True)
+	
             # Compute R_3_6
             R_3_6 = simplify(R_0_33.T*R_rpy[0:3,0:3])
+	    
+            #Compute theta4,theta5 and theta6		
 	    theta4 = atan2(R_3_6[2,2], -R_3_6[0,2])
             theta5 = atan2( sqrt(pow(R_3_6[2,2],2) + pow(R_3_6[0,2],2)) , R_3_6[1,2])
             theta6 =  atan2(-R_3_6[1,1], R_3_6[1,0])
