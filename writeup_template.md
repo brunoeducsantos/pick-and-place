@@ -104,7 +104,7 @@ where phi1 , phi2 and phi3 are respectively roll, pitch and yaw on base_link ref
 
 We aim to compute 6 joint angles corresponding to 6 DoF (theta_i, where i= {1,2,3,4,5,6}). For the purpose of computing the first three thetas we are using to use a geometric approach. 
 For computing theta_1 let's use the following figure:
-![3DTheta123][https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png]
+![3DTheta123](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png)
 
 ### Project Implementation
 
