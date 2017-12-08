@@ -196,7 +196,11 @@ R_3_6 = T_3_4[0:3,0:3] * T_4_5[0:3,0:3] * T_5_6[0:3,0:3]
 ```
 On the other hand, we also have **R_3_6** values using **R_0_3** and **R_corr* :
 ```
-R_3_6 = R_0_3.T*R_rpy)
+R_3_6 = R_0_3.T*R_rpy =
+[[  0.878176399737216, -0.878176399737217, -0.411396675699123],
+[-0.0508002512060586, 0.0508002512060586,  0.705249532493766],
+[-0.0888965057443953, 0.0888965057443953,   0.57738710770248]]
+
 ```
 From algebric simplification, we simpify the following expressions to obtain **theta4**, **theta5** and **theta6** ,
 ```
@@ -219,10 +223,25 @@ theta6 =  atan2(-R_3_6[1,1], R_3_6[1,0])
 
 ### Project Implementation
 
-#### 1. Fill in the `IK_server.py` file with properly commented python code for calculating Inverse Kinematics based on previously performed Kinematic Analysis. Your code must guide the robot to successfully complete 8/10 pick and place cycles. Briefly discuss the code you implemented and your results. 
+#### 1. Implementation of inverse kinematics on 'IK_server.py'
+
+The first steps were the implementation of the following computations:
+
+- forward kinematics 
+- correction matrix from URDF to DH 
+- rotation matrix transforming from base_link to end-effector reference frame
+- rotation matrix transforming from base_link to WC reference frame
+
+The previous computations were made outside the loop over robotic positions in order to save computation time. 
+
+Inside the end-effector positions loop the following calculation were evaluated:
+
+- WC coordinates
+- theta1, theta2, theta3, theta4, theta5, theta5
 
 
-Here I'll talk about the code, what techniques I used, what worked and why, where the implementation might fail and how I might improve it if I were going to pursue this project further.  
+
+ 
 
 
 And just for fun, another example image:
