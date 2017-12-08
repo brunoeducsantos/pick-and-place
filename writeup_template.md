@@ -9,9 +9,8 @@
 [law of cos sin]: http://www2.clarku.edu/~djoyce/trig/laws.html
 [2D perspective]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/drawRobotic.png
 [angle and parallel lines rule]: https://www.mathplanet.com/education/pre-algebra/introducing-geometry/angles-and-parallel-lines
-[robotic arm] : https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/SteadyCase.PNG
 
-![alt_text][robotic arm] 
+![[robotic arm](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/SteadyCase.PNG) 
 
 ### Kinematic Analysis
 #### 1. Evaluation kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
