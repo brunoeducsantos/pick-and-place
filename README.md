@@ -1,5 +1,5 @@
 # Pick and Place
-
+![robot](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/pickobject.PNG)
 ## Goal
 
 The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. Check [IK_server](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/kuka_arm/scripts/IK_server.py) to find more details about Inverse Kinematics.
