@@ -194,6 +194,10 @@ R_3_6 = T_3_4[0:3,0:3] * T_4_5[0:3,0:3] * T_5_6[0:3,0:3]
 [sin(theta5)*cos(theta6), -sin(theta5)*sin(theta6), cos(theta5)]
 ,[-sin(theta4)*cos(theta5)*cos(theta6) - sin(theta6)*cos(theta4), sin(theta4)*sin(theta6)*cos(theta5) - cos(theta4)*cos(theta6), sin(theta4)*sin(theta5)]]
 ```
+On the other hand, we also have **R_3_6** values using **R_0_3** and **R_corr* :
+```
+R_3_6 = R_0_3.T*R_rpy)
+```
 From algebric simplification, we simpify the following expressions to obtain **theta4**, **theta5** and **theta6** ,
 ```
 tan(theta4) = R_3_6[2,2]/ (-R_3_6[0,2])
