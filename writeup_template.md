@@ -126,6 +126,7 @@ For the computation of theta2, we will need to derive distances A/B/C as well an
 
 ```
 A= 1.501
+B = sqrt(pow(w_z - 0.75,2) + pow(sqrt(w_x*w_x+w_y*w_y) -0.35,2))
 C = 1.25
 
 ```
