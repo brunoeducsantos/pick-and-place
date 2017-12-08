@@ -247,6 +247,6 @@ In order to reduce the end-effector position error the non-singular cases comput
 On the other hand, when **theta5~0**,i.e., we will have **r13 = r23 = r31 = r32 = 0** and it will result in a infinite number of solutions. 
 From the two previous cases we would need to define conditions to cover these cases.
 
-![alt text] (https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/pickobject.PNG)
+![robotic arm2](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/pickobject.PNG) 
 
 
