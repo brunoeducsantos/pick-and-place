@@ -122,7 +122,7 @@ Using the WC coordinates, the expression for theta1 follows:
 ```
 theta1 = atan2(w_y,w_x)
 ```
-For the computation of theta2, we will need to derive distances A/B/C as well angles a/b. Regarding the distances A and B it follows easily from observing figure [3DTheta123] :
+For the computation of theta2, we will need to derive distances A/B/C as well angles a/b. Regarding the distances A and B it follows easily from observing figure ![figure][3DTheta123] :
 
 ```
 A= 1.501
