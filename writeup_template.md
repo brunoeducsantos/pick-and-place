@@ -8,6 +8,7 @@
 [3DTheta123]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png
 [law of cos sin]: http://www2.clarku.edu/~djoyce/trig/laws.html
 [2D perspective]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/drawRobotic.png
+[angle and parallel lines rule]: https://www.mathplanet.com/education/pre-algebra/introducing-geometry/angles-and-parallel-lines
 
 ### Kinematic Analysis
 #### 1. Evaluation kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
@@ -49,42 +50,42 @@ T = [[        cos(θ),       -sin(θ),       0,         a],
 Using the transformation matrix formula above, here are the joint transformation matrices for the arm:
 
 ```
-Joint 1: [[ cos(θ1), -sin(θ1),  0,     0],
+T_0_1 = [[ cos(θ1), -sin(θ1),  0,     0],
           [ sin(θ1),  cos(θ1),  0,     0],
           [       0,        0,  1,  0.75],
           [       0,        0,  0,     1]]
 ```
 
 ```
-Joint 2: [[ sin(θ2),  cos(θ2),  0,  0.35],
+T_1_2 =  [[ sin(θ2),  cos(θ2),  0,  0.35],
           [       0,        0,  1,     0],
           [ cos(θ2), -sin(θ2),  0,     0],
           [       0,        0,  0,     1]]
 ```
 
 ```
-Joint 3: [[ cos(θ3), -sin(θ3),  0,  1.25],
+T_2_3 =  [[ cos(θ3), -sin(θ3),  0,  1.25],
           [ sin(θ3),  cos(θ3),  0,     0],
           [       0,        0,  1,     0],
           [       0,        0,  0,     1]]
 ```
 
 ```
-Joint 4: [[ cos(θ4), -sin(θ4),  0, -0.054],
+T_3_4 = [[ cos(θ4), -sin(θ4),  0, -0.054],
           [       0,        0,  1,    1.5],
           [-sin(θ4), -cos(θ4),  0,      0],
           [       0,        0,  0,      1]]
 ```
 
 ```
-Joint 5: [[ cos(θ5), -sin(θ5),  0,      0],
+T_4_5 = [[ cos(θ5), -sin(θ5),  0,      0],
           [       0,        0, -1,      0],
           [ sin(θ5),  cos(θ5),  0,      0],
           [       0,        0,  0,      1]]
 ```
 
 ```
-Joint 6: [[ cos(θ6), -sin(θ6),  0,      0],
+T_5_6  = [[ cos(θ6), -sin(θ6),  0,      0],
           [       0,        0,  1,      0],
           [-sin(θ6), -cos(θ6),  0,      0],
           [       0,        0,  0,      1]]
@@ -117,7 +118,7 @@ w_y = py - (d7*R_rpy[1,2])
 w_z = pz - (d7*R_rpy[2,2])
 
 ```
-where d7 comes from DH table in section 1 , R_rpy its the transform matrix from base_link to end-effector obtained in previous sectio and (px,py,pz) is the end-effector position.
+where d7 comes from DH table in section 1 , **R_rpy** its the transform matrix from base_link to end-effector obtained in previous sectio and **(px,py,pz)** is the end-effector position.
 Using the WC coordinates, the expression for theta1 follows:
 
 ```
@@ -132,7 +133,7 @@ C = 1.25
 
 ```
 
-where d1 and a1 are DH parameters from section1 ( d1 = 0.75m, a1= 0.35).
+where **d1** and **a1** are DH parameters from section1 ( d1 = 0.75m, a1= 0.35).
 The following step is applying the [law of cos sin] and we obtain angles a/b : 
 
 ```
@@ -141,22 +142,45 @@ b = acos((pow(C,2) + pow(A,2) - pow(B,2))/(2*C*A))
 
 ```
 
-After obtaining A/B/C and a/b we can obtain a general expression to theta2 from the following the analysis of figure  [3DTheta123] and the following one:
+After obtaining **A/B/C** and **a/b** we can obtain a general expression to theta2 from the following the analysis of figure  [3DTheta123] and the following one:
 
 ![alt_text][2D perspective] 
 
-As a result, we can deduce that theta2 using a joint 2 frame , it will be given by:
+As a result, we can deduce that **theta2** using a joint 2 frame , it will be given by:
 
 ```
 theta2= pi/2 - a - offset
 ```
-where from [2D perspective] the offset is obtained by:
+where from  figure [2D perspective],  the offset is obtained by:
 
 
 ```
 offset = atan2(w_z - d1,sqrt(w_x*w_x+w_y*w_y) - a1)
 
 ```
+
+Finally, using [angle and parallel lines rule] and regarding figure [2D perspective] , it follows that:
+
+```
+pi/2 - theta3 = b+x 
+
+```
+where **theta3** has symmetric value since it is counterclockwise. So, it resuls that,
+
+```
+theta3 = pi/2 - (b+x) 
+
+```
+where **x** is an offset resulting from robotic arm model design:
+
+```
+x = atan2(0.054, 1.5)
+```
+At this point, we obtained the first three joint angles **theta1,theta2,theta3** which lead us to the orientation of WC (i.e, the rotation matrix transforming from base_link to WC),
+```
+R_0_3 = T_0_1[0:3,0:3]*T_1_2[0:3,0:3]*T_2_3[0:3,0:3]
+```
+replacing **theta1**, **theta2** and **theta3** obtained previously it follows :
 
 
 
