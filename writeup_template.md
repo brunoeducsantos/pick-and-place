@@ -6,7 +6,8 @@
 [image2]: ./misc_images/misc3.png
 [image3]: ./misc_images/misc2.png
 [3DTheta123]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png
-
+[law of cos sin]: http://www2.clarku.edu/~djoyce/trig/laws.html
+[2D perspective]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/drawRobotic.png
 
 ### Kinematic Analysis
 #### 1. Evaluation kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
@@ -116,7 +117,7 @@ w_y = py - (d7*R_rpy[1,2])
 w_z = pz - (d7*R_rpy[2,2])
 
 ```
-where d7 comes from DH table in section 1 and R_rpy its the transform matrix from base_link to end-effector obtained in previous section.
+where d7 comes from DH table in section 1 , R_rpy its the transform matrix from base_link to end-effector obtained in previous sectio and (px,py,pz) is the end-effector position.
 Using the WC coordinates, the expression for theta1 follows:
 
 ```
@@ -126,10 +127,39 @@ For the computation of theta2, we will need to derive distances A/B/C as well an
 
 ```
 A= 1.501
-B = sqrt(pow(w_z - 0.75,2) + pow(sqrt(w_x*w_x+w_y*w_y) -0.35,2))
+B = sqrt(pow(w_z - d1,2) + pow(sqrt(w_x*w_x+w_y*w_y) - a1,2))
 C = 1.25
 
 ```
+
+where d1 and a1 are DH parameters from section1 ( d1 = 0.75m, a1= 0.35).
+The following step is applying the [law of cos sin] and we obtain angles a/b : 
+
+```
+a = acos((pow(B,2) + pow(C,2) - pow(A,2))/(2*B*C))
+b = acos((pow(C,2) + pow(A,2) - pow(B,2))/(2*C*A))
+
+```
+
+After obtaining A/B/C and a/b we can obtain a general expression to theta2 from the following the analysis of figure  [3DTheta123] and the following one:
+
+![alt_text][2D perspective] 
+
+As a result, we can deduce that theta2 using a joint 2 frame , it will be given by:
+
+```
+theta2= pi/2 - a - offset
+```
+where from [2D perspective] the offset is obtained by:
+
+
+```
+offset = atan2(w_z - d1,sqrt(w_x*w_x+w_y*w_y) - a1)
+
+```
+
+
+
 
 
 
