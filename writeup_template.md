@@ -187,7 +187,14 @@ R_0_3 = [[sin(theta2 + theta3)*cos(theta1), cos(theta1)*cos(theta2 + theta3), -s
 [        cos(theta2 + theta3),        -sin(theta2 + theta3),        0]]
 
 ```
-For computing the o
+Following this result, the next step is obtaining the symbolic rotation matrix for **theta4**, **theta5** and **theta6** angles (i.e., orientation of end-effector on WC frame ) :
+```
+R_3_6 = T_3_4[0:3,0:3] * T_4_5[0:3,0:3] * T_5_6[0:3,0:3] 
+= [[-sin(q4)*sin(q6) + cos(q4)*cos(q5)*cos(q6), -sin(q4)*cos(q6) - sin(q6)*cos(q4)*cos(q5), -sin(q5)*cos(q4)], 
+[sin(q5)*cos(q6), -sin(q5)*sin(q6), cos(q5)]
+,[-sin(q4)*cos(q5)*cos(q6) - sin(q6)*cos(q4), sin(q4)*sin(q6)*cos(q5) - cos(q4)*cos(q6), sin(q4)*sin(q5)]]
+```
+
 
 
 ### Project Implementation
