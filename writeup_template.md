@@ -243,7 +243,7 @@ Inside the end-effector positions loop the following calculation were evaluated:
 
 The average time computation per end-effector position was less thant one second.
 
-In order to reduce the end-effector position error the non-singular cases computing **theta4**, **theta5*, **theta6**. For instance, when **sin(theta5)>0** or **sin(theta5)<0** we will two different solutions for the previous joint angles. 
+In order to reduce the end-effector position error the non-singular cases computing **theta4**, **theta5**, **theta6**. For instance, when **sin(theta5)>0** or **sin(theta5)<0** we will two different solutions for the previous joint angles. 
 On the other hand, when **theta5~0**,i.e., we will have **r13 = r23 = r31 = r32 = 0** and it will result in a infinite number of solutions. 
 From the two previous cases we would need to define conditions to cover these cases.
 
