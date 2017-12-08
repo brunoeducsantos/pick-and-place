@@ -185,7 +185,9 @@ replacing **theta1**, **theta2** and **theta3** obtained previously it follows :
 R_0_3 = [[sin(theta2 + theta3)*cos(theta1), cos(theta1)*cos(theta2 + theta3), -sin(theta1)],
 [sin(theta1)*sin(theta2 + theta3), sin(theta1)*cos(theta2 + theta3),  cos(theta1)],
 [        cos(theta2 + theta3),        -sin(theta2 + theta3),        0]]
+
 ```
+For computing the o
 
 
 ### Project Implementation
