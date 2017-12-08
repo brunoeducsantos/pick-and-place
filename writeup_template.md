@@ -5,7 +5,7 @@
 [image1]: ./misc_images/misc1.png
 [image2]: ./misc_images/misc3.png
 [image3]: ./misc_images/misc2.png
-  
+[3DTheta123]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png
 
 
 ### Kinematic Analysis
@@ -105,7 +105,7 @@ where phi1 , phi2 and phi3 are respectively roll, pitch and yaw on base_link ref
 We aim to compute 6 joint angles corresponding to 6 DoF (theta_i, where i= {1,2,3,4,5,6}). For the purpose of computing the first three thetas we are using to use a geometric approach. 
 For computing theta_1 let's use the following figure:
 
-![3DTheta123](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png)
+[theta1] [3DTheta123]
 
 
 Firstly, we need to compute the coordinates of wrist center (WC) from the following expression:
@@ -122,7 +122,7 @@ Using the WC coordinates, the expression for theta1 follows:
 ```
 theta1 = atan2(w_y,w_x)
 ```
-For the computation of theta2, we will need to derive distances A/B/C as well angles a/b. Regarding the distances A and B it follows easily from observing figure ![3DTheta123] :
+For the computation of theta2, we will need to derive distances A/B/C as well angles a/b. Regarding the distances A and B it follows easily from observing figure (3DTheta123) :
 
 ```
 A= 1.501
