@@ -7,7 +7,7 @@
 #
 # All Rights Reserved.
 
-# Author: Harsh Pandya
+# Author: Harsh Pandya, Bruno Santos
 
 # import modules
 import rospy
