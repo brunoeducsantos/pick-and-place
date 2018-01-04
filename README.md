@@ -2,10 +2,10 @@
 ![robot](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/pickobject.PNG)
 ## Goal
 
-The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. Check [IK_server](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/kuka_arm/scripts/IK_server.py) to find more details about Inverse Kinematics.
+The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. 
 
 ## Setup
-Make sure you are using robo-nd VM or have Ubuntu+ROS installed locally.
+Make sure you install [ROS](http://www.ros.org/) on a Ubuntu 16.04 machine.
 
 ### One time Gazebo setup step:
 Check the version of gazebo installed on your system using a terminal:
@@ -37,7 +37,7 @@ $ catkin_make
 Now that you have a workspace, clone or download this repo into the **src** directory of your workspace:
 ```sh
 $ cd ~/catkin_ws/src
-$ git clone https://github.com/udacity/RoboND-Kinematics-Project.git
+$ git clone https://github.com/BrunoEduardoCSantos/Pick-and-Place
 ```
 
 Now from a terminal window:
@@ -45,7 +45,7 @@ Now from a terminal window:
 ```sh
 $ cd ~/catkin_ws
 $ rosdep install --from-paths src --ignore-src --rosdistro=kinetic -y
-$ cd ~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/scripts
+$ cd ~/catkin_ws/src/Pick-and-Place/kuka_arm/scripts
 $ sudo chmod +x target_spawn.py
 $ sudo chmod +x IK_server.py
 $ sudo chmod +x safe_spawner.sh
@@ -64,7 +64,7 @@ source ~/catkin_ws/devel/setup.bash
 ```
 
 
-In addition, you can also control the spawn location of the target object in the shelf. To do this, modify the**spawn_location** argument in `target_description.launch` file under /RoboND-Kinematics-Project/kuka_arm/launch. 0-9 are valid values for spawn_location with 0 being random mode.
+In addition, you can also control the spawn location of the target object in the shelf. To do this, modify the**spawn_location** argument in `target_description.launch` file under /Pick-and-Place/kuka_arm/launch. 0-9 are valid values for spawn_location with 0 being random mode.
 
 You can launch the project by
 ```sh
@@ -72,11 +72,6 @@ $ cd ~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/scripts
 $ ./safe_spawner.sh
 ```
 
-If you are running in demo mode, this is all you need. To run your own Inverse Kinematics code change the **demo** flag described above to _"false"_ and run your code (once the project has successfully loaded) by:
-```sh
-$ cd ~/catkin_ws/src/RoboND-Kinematics-Project/kuka_arm/scripts
-$ rosrun kuka_arm IK_server.py
-```
 Once Gazebo and rviz are up and running, make sure you see following in the gazebo world:
 
 	- Robot
@@ -89,4 +84,10 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 
 ## Implementation 
 
-For further details on Kinematics implementation and performance of algorithm check out : [writeup](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/writeup_template.md)
+For further details on Kinematics implementation and performance of algorithm check out : [writeup](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/writeup_template.md).
+Check [IK_server](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/kuka_arm/scripts/IK_server.py) to find more details about Inverse Kinematics implementation.
+
+
+# Disclamer
+
+This project was build from [Robo-ND-Pick-and-place project](https://github.com/udacity/RoboND-Kinematics-Project) in the context of [Robotic Software Engineer Nanodegree](https://in.udacity.com/course/robotics-nanodegree--nd209)
