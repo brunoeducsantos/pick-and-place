@@ -1,13 +1,5 @@
 # Pick and Place
 ![robot](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/pickobject.PNG)
-[image1]: ./misc_images/misc1.png
-[image2]: ./misc_images/misc3.png
-[image3]: ./misc_images/misc2.png
-[3DTheta123]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png
-[law of cos sin]: http://www2.clarku.edu/~djoyce/trig/laws.html
-[2D perspective]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/drawRobotic.png
-[angle and parallel lines rule]: https://www.mathplanet.com/education/pre-algebra/introducing-geometry/angles-and-parallel-lines
-
 ## Goal
 
 The project goal is compute inverse kinematics for a 6 degree-of-freedom robotic arm in ROS in order to pick an object in the shelf and place it in a cilinder. 
@@ -92,6 +84,14 @@ Once Gazebo and rviz are up and running, make sure you see following in the gaze
 	- Dropbox right next to the robot
 
 ## Implementation and analysis 
+
+[image1]: ./misc_images/misc1.png
+[image2]: ./misc_images/misc3.png
+[image3]: ./misc_images/misc2.png
+[3DTheta123]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/theta13D.png
+[law of cos sin]: http://www2.clarku.edu/~djoyce/trig/laws.html
+[2D perspective]: https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/misc_images/drawRobotic.png
+[angle and parallel lines rule]: https://www.mathplanet.com/education/pre-algebra/introducing-geometry/angles-and-parallel-lines
 
 ### Kinematic Analysis
 #### 1. Evaluation kr210.urdf.xacro file to perform kinematic analysis of Kuka KR210 robot and derive its DH parameters.
