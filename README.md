@@ -306,7 +306,7 @@ theta6 =  atan2(-R_3_6[1,1], R_3_6[1,0])
 
 ### Project Implementation
 
-#### 1. Implementation of inverse kinematics on 'IK_server.py'
+#### 1. Implementation of inverse kinematics on [IK_server.py](https://github.com/BrunoEduardoCSantos/Pick-and-Place/blob/master/kuka_arm/scripts/IK_server.py)
 
 The first steps were the implementation of the following computations:
 
