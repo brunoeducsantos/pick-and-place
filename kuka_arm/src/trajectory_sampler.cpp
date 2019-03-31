@@ -177,7 +177,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
     // define plan object which will hold the planned trajectory
     moveit::planning_interface::MoveGroupInterface::Plan my_plan;
 
-    bool success = move_group.plan(my_plan);
+    moveit::planning_interface::MoveItErrorCode success = move_group.plan(my_plan);
     ROS_INFO("Visualizing plan to target: %s",
              success ? "SUCCEEDED" : "FAILED");
 
@@ -288,7 +288,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
         }
 
         move_group.setJointValueTarget(robot_joint_positions);
-        bool worked = move_group.move();
+        moveit::planning_interface::MoveItErrorCode worked = move_group.move();
         ROS_INFO("Robot actuation: %s", worked ? "SUCCEEDED" : "FAILED");
       }
     }
@@ -449,7 +449,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
         }
 
         move_group.setJointValueTarget(robot_joint_positions);
-        bool worked = move_group.move();
+        moveit::planning_interface::MoveItErrorCode worked = move_group.move();
         ROS_INFO("Robot actuation: %s", worked ? "SUCCEEDED" : "FAILED");
       }
     }
@@ -512,7 +512,7 @@ TrajectorySampler::TrajectorySampler(ros::NodeHandle nh)
   }
 }
 
-bool TrajectorySampler::OperateGripper(const bool &close_gripper)
+moveit::planning_interface::MoveItErrorCode TrajectorySampler::OperateGripper(const bool &close_gripper)
 {
   // RobotState contains the current position/velocity/acceleration data
   moveit::core::RobotStatePtr gripper_current_state =
@@ -540,25 +540,25 @@ bool TrajectorySampler::OperateGripper(const bool &close_gripper)
   eef_group.setJointValueTarget(gripper_joint_positions);
   ros::Duration(1.5).sleep();
 
-  bool success = eef_group.move();
+  moveit::planning_interface::MoveItErrorCode success = eef_group.move();
   return success;
 }
 
-bool TrajectorySampler::OpenGripper()
+moveit::planning_interface::MoveItErrorCode  TrajectorySampler::OpenGripper()
 {
-  bool success = OperateGripper(false);
+  moveit::planning_interface::MoveItErrorCode   success = OperateGripper(false);
   ROS_INFO("Gripper actuation: Opening %s", success ? "SUCCEEDED" : "FAILED");
   return success;
 }
 
-bool TrajectorySampler::CloseGripper()
+moveit::planning_interface::MoveItErrorCode TrajectorySampler::CloseGripper()
 {
-  bool success = OperateGripper(true);
+  moveit::planning_interface::MoveItErrorCode success = OperateGripper(true);
   ROS_INFO("Gripper actuation: Closing %s", success ? "SUCCEEDED" : "FAILED");
   return success;
 }
 
-bool TrajectorySampler::SetupCollisionObject(const std::string &object_id,
+moveit::planning_interface::MoveItErrorCode TrajectorySampler::SetupCollisionObject(const std::string &object_id,
     const std::string &mesh_path,
     const geometry_msgs::Pose &object_pose,
     moveit_msgs::CollisionObject &collision_object)

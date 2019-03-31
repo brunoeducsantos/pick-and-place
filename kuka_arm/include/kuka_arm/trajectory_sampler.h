@@ -67,11 +67,11 @@ private:
    * close_gripper = 0; open gripper
    *                 = 1; close gripper
    */
-  bool OperateGripper(const bool &close_gripper);
-  bool OpenGripper();
-  bool CloseGripper();
+ moveit::planning_interface::MoveItErrorCode OperateGripper(const bool &close_gripper);
+moveit::planning_interface::MoveItErrorCode  OpenGripper();
+ moveit::planning_interface::MoveItErrorCode   CloseGripper();
 
-  bool SetupCollisionObject(const std::string &object_id,
+  moveit::planning_interface::MoveItErrorCode  SetupCollisionObject(const std::string &object_id,
                             const std::string &mesh_path,
                             const geometry_msgs::Pose &object_pose,
                             moveit_msgs::CollisionObject &collision_object);
